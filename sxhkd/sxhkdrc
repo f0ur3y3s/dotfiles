@@ -129,7 +129,7 @@ super + {Left,Down,Up,Right}
 
 # Brightness controls
 XF86MonBrightness{Up,Down}
-    brightnessctl s 2.5%{+,-}
+    brightnessctl s 5%{+,-}
 
 # Audio controls
 XF86Audio{RaiseVolume,LowerVolume}
