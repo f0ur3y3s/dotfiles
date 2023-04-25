@@ -124,8 +124,8 @@ super + {Left,Down,Up,Right}
 #
 # lock
 
-#alt + shift + x
-#    betterlockscreen -l dim
+alt + shift + x
+    betterlockscreen -l dimblur
 
 # Brightness controls
 XF86MonBrightness{Up,Down}

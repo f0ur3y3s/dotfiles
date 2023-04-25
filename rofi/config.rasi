@@ -1,5 +1,9 @@
 // @theme "/usr/share/rofi/themes/Arc-Dark.rasi"
 
+* {
+    color:  #FFFFFF;
+}
+
 window {
     background-color: rgba(0,0,0,0.8);
 	border:     1;
@@ -9,6 +13,7 @@ window {
 mainbox { 
     border:     0;
     padding:    0;
+    color:      #FFFFFF;
 }
 
 
