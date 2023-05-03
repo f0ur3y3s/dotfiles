@@ -15,6 +15,9 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'preservim/nerdtree'
     Plug 'ryanoasis/vim-devicons'
     Plug 'tpope/vim-commentary'
+    Plug 'mattn/emmet-vim'
+    Plug 'manzeloth/live-server'
+
 call plug#end()
 
 map <C-p> :FZF<CR>
@@ -22,7 +25,7 @@ map <C-b> :Buffers<CR>
 map <C-f> :Files<CR>
 map <C-g> :GFiles<CR>
 
-colorscheme catppuccin-mocha
+colorscheme catppuccin
 
 set number
 set relativenumber
@@ -67,9 +70,9 @@ inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 " NERDTree 
 let mapleader = ","
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <Space>n :NERDTree<CR>
+nnoremap <Space>e :NERDTreeToggle<CR>
+nnoremap <Space>f :NERDTreeFind<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
@@ -103,3 +106,12 @@ nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
 nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
 " Restore buffer
 nnoremap <silent>    <A-s-c> <Cmd>BufferRestore<CR>
+
+
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+
+inoremap jk <c-c>`^
+" inoremap ii <c-c>`^
+vnoremap <silent>   <A-l> <Cmd>LiveServer start<CR>
+vnoremap <silent>   <A-e> <Cmd>LiveServer end<CR>
