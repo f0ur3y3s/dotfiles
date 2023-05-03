@@ -34,7 +34,6 @@ window:
 
   opacity: 0.8
   startup_mode: Windowed
-
   dynamic_title: true
 
 font:
@@ -55,7 +54,7 @@ font:
     family: CaskaydiaCove Nerd Font
     style: Bold Italic
 
-  size: 10.0
+  size: 16.0
 
 
 colors:

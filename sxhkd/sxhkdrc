@@ -129,7 +129,7 @@ alt + shift + x
 
 # Brightness controls
 XF86MonBrightness{Up,Down}
-    brightnessctl s 5%{+,-}
+    brightnessctl s 2.5%{+,-}
 
 # Audio controls
 XF86Audio{RaiseVolume,LowerVolume}
@@ -138,6 +138,5 @@ XF86Audio{RaiseVolume,LowerVolume}
 XF86AudioMute
 	pactl -- set-sink-mute 0 toggle
     # amixer set Master toggle
-
 Print
 	escrotum -C '~/Pictures/Screenshots/%Y-%m-%d-%H%M%S_$wx$h_escrotum.png' &
