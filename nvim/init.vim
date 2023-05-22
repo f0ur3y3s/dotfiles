@@ -1,6 +1,6 @@
 call plug#begin("~/.config/nvim/plugged")
     Plug 'w0rp/ale'
-    " Plug 'github/copilot.vim'
+    Plug 'github/copilot.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -9,6 +9,7 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'junegunn/fzf.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+    Plug 'tomasr/molokai', { 'as': 'molokai' } 
     Plug 'nvim-tree/nvim-web-devicons' " OPTIONAL: for file icons
     Plug 'romgrk/barbar.nvim'
     "Plug 'preservim/nerdcommenter'
@@ -17,7 +18,8 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'tpope/vim-commentary'
     Plug 'mattn/emmet-vim'
     Plug 'manzeloth/live-server'
-
+    Plug 'windwp/nvim-autopairs'
+    Plug 'mhinz/vim-startify'
 call plug#end()
 
 map <C-p> :FZF<CR>
@@ -26,7 +28,7 @@ map <C-f> :Files<CR>
 map <C-g> :GFiles<CR>
 
 colorscheme catppuccin
-
+" colorscheme molokai
 set number
 set relativenumber
 set hidden
@@ -51,7 +53,8 @@ let g:ale_linters = {'python': ['flake8']}
 
 
 " Airline
-let g:airline_theme='minimalist'
+" let g:airline_theme='minimalist'
+let g:airline_theme='catppuccin'
 let g:airline_left_sep  = ''
 let g:airline_right_sep = ''
 let g:airline#extensions#ale#enabled = 1
@@ -69,13 +72,17 @@ inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
 " NERDTree 
 let mapleader = ","
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <Space>n :NERDTree<CR>
-nnoremap <Space>e :NERDTreeToggle<CR>
-nnoremap <Space>f :NERDTreeFind<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+" nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <Space>n :NERDTree<CR>
+" nnoremap <Space>e :NERDTreeToggle<CR>
+" nnoremap <Space>f :NERDTreeFind<CR>
+nnoremap <Space>t :NERDTreeToggle<CR>
+nnoremap <Space>f :NERDTreeFocus<CR>
 
+autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 
@@ -115,3 +122,11 @@ inoremap jk <c-c>`^
 " inoremap ii <c-c>`^
 vnoremap <silent>   <A-l> <Cmd>LiveServer start<CR>
 vnoremap <silent>   <A-e> <Cmd>LiveServer end<CR>
+
+
+let g:user_emmet_expandabbr_key='<C-y>'
+
+lua << EOF
+require("nvim-autopairs").setup()
+EOF
+
