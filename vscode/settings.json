@@ -1,0 +1,40 @@
+{
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-x>": false,
+        "<C-c>": false,
+        "<C-v>": false,
+        "<C-w>": false,
+        "<C-s>": false,
+        "<C-S-i>": false
+    },
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<c-c>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<S-Tab>"
+            ],
+            "after": [
+                "<<"
+            ]
+        },
+        {
+            "before": [
+                "<Tab>"
+            ],
+            "after": [
+                ">>"
+            ]
+        }
+    ]
+}
