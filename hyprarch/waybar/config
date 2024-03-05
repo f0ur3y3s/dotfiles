@@ -1,0 +1,117 @@
+{
+    "layer": "top", // Waybar at top layer
+    "height": 30, // Waybar height (to be removed for auto height)
+    "spacing": 4, // Gaps between modules (4px)
+
+    "modules-left": ["hyprland/workspaces", "custom/discord", "custom/brave", "hyprland/window"],
+    "modules-center": ["custom/media"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "clock"],
+    // "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "tray"],
+
+    // "idle_inhibitor": {
+    //     "format": "{icon}",
+    //     "format-icons": {
+    //         "activated": "",
+    //         "deactivated": ""
+    //     }
+    // },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format-critical": "{temperatureF}°F {icon}",
+        "format": "{temperatureF}°F {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    // "pulseaudio": {
+    //     // "scroll-step": 1, // %, can be a float
+    //     "format": "{volume}% {icon} {format_source}",
+    //     "format-bluetooth": "{volume}% {icon} {format_source}",
+    //     "format-bluetooth-muted": " {icon} {format_source}",
+    //     "format-muted": " {format_source}",
+    //     "format-source": "{volume}% ",
+    //     "format-source-muted": "",
+    //     "format-icons": {
+    //         "headphone": " ",
+    //         "hands-free": " ",
+    //         "headset": " ",
+    //         "phone": " ",
+    //         "portable": " ",
+    //         "car": " ",
+    //         "default": [" ", " ", " "]
+    //     },
+    //     "on-click": "pavucontrol"
+    // },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": " {format_source}",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+    },
+
+    "custom/discord": {
+        "format": "{icon}",
+        "format-icons": {
+            "default": ""
+        },
+        "tooltip": false,
+        "on-click": "discord >/dev/null 2>&1 &",
+        "escape": true
+    },
+
+    "custom/brave": {
+        "format": "{icon}",
+        "format-icons": {
+            "default": ""
+        },
+        "tooltip": false,
+        "on-click": "brave >/dev/null 2>&1 &",
+        "escape": true
+    },
+
+
+}

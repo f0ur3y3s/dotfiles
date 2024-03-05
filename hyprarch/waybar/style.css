@@ -1,0 +1,82 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    border-radius: 20px;
+    color: #FFFFFF;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* .modules-right, */
+.modules-center,
+.modules-left {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modules-right {
+    margin: 4px 4px 0 0;
+    margin-right: 20px;
+}
+
+.modules-center {
+    margin: 4px 0 0 0;
+}
+
+.modules-left {
+    margin: 4px 0 0 4px;
+    margin-left: 20px;
+}
+
+#workspaces button {
+    padding: 1px 5px;
+    background-color: transparent;
+}
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    background-color: rgba(120, 120, 120, 0.8);
+    color: #000000;
+}
+
+#workspaces button.active {
+    background-color: rgba(60, 60, 60, 0.5);
+}
+
+#custom-media.custom-spotify {
+    background-color: #294C29;
+    color: #C1D7C1;
+}
+
+
+#window,
+#clock,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#idle_inhibitor {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 0 10px;
+}
+
+#custom-media,
+#custom-brave,
+#custom-discord,
+#tray
+{
+    background-color: rgba(0,0,0,0);
+    padding: 0 10px;
+}
+
+#tray > .passive {
+    background-color: rgba(0,0,0,0);
+}
+
+#clock {
+    /* margin: 0 0 0 20px; */
+    font-weight: bold;
+}
