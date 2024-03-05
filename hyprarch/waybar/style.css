@@ -1,9 +1,16 @@
+@define-color custom-bg rgba(0, 0, 0, 0.8);
+@define-color custom-text whitesmoke;
+@define-color highlight-color #294C29;
+@define-color highlight-text-color #C1D7C1;
+@define-color inactive-color #4C2929;
+@define-color inactive-text-color #D7C1C1;
+
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 16px;
     border-radius: 20px;
-    color: #FFFFFF;
+    color: @custom-text;
 }
 
 window#waybar {
@@ -13,7 +20,7 @@ window#waybar {
 /* .modules-right, */
 .modules-center,
 .modules-left {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: @custom-bg;
 }
 
 .modules-right {
@@ -46,10 +53,29 @@ window#waybar {
 }
 
 #custom-media.custom-spotify {
-    background-color: #294C29;
-    color: #C1D7C1;
+    background-color: @highlight-color;
+    color: @highlight-text-color;
 }
 
+#custom-openvpn {
+    background-color: @custom-bg;
+    padding: 0 10px;
+}
+
+#custom-openvpn.active {
+    background-color: @highlight-color;
+    color: @highlight-text-color;
+}
+
+#custom-openvpn.inactive {
+    background-color: @inactive-color;
+    color: @inactive-text-color;
+}
+
+#pulseaudio.muted {
+    background-color: @inactive-color;
+    color: @inactive-text-color;
+}
 
 #window,
 #clock,
@@ -59,7 +85,7 @@ window#waybar {
 #network,
 #pulseaudio,
 #idle_inhibitor {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: @custom-bg;
     padding: 0 10px;
 }
 
@@ -70,10 +96,6 @@ window#waybar {
 {
     background-color: rgba(0,0,0,0);
     padding: 0 10px;
-}
-
-#tray > .passive {
-    background-color: rgba(0,0,0,0);
 }
 
 #clock {
