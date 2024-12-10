@@ -106,7 +106,7 @@ get_space () {
 
 
 _FOURSIGHT_LEFT="${user_host}${current_dir}"
-_FOURSIGHT_RIGHT="[%*]"
+_FOURSIGHT_RIGHT="[ %* ]"
 
 # Function to hook precmd
 foursight_precmd () {
