@@ -1,32 +1,8 @@
 # oh-my-zsh foursight theme
 # Adapted from clean and bureau themes
-local symbols=(
-"(>^_^)>"
-"(>°ᴗ°)>"
-"(>ᵔᴥᵔ)>"
-'(>´◡`)>'
-"(>^o^)>"
-"(>•ᴗ•)>"
-"(>≧▽≦)>"
-"(>✪‿✪)>"
-"(>╹◡╹)>"
-"(>◕‿◕)>"
-"(>∩_∩)>"
-"(>^‿^)>"
-"(>^3^)>"
-"(>♥‿♥)>"
-"(>^ω^)>"
-"(>ಠᴗಠ)>"
-# "(>✿◕‿◕)>"
-# "(>°ヮ°)>"
-# "(>＾▽＾)>"
-# "(>๑❛ᴗ❛๑)>"
-# "(>＾ω＾)>"
-# "(>￣▽￣)>"
-)
-local user_host="%B%(!.%{$fg[green]%}.%{$fg[green]%})%n@%m%{$reset_color%} "
-# local user_symbol="%{$fg[yellow]%}(>^v^)> %B%b"
+
 local user_symbol
+local user_host="%B%(!.%{$fg[green]%}.%{$fg[green]%})%n@%m%{$reset_color%} "
 local current_dir="%B%{$fg[blue]%}%~ %{$reset_color%}"
 
 # ZSH_THEME_GIT_PROMPT_PREFIX="[%{$fg_bold[green]%} ±%{$reset_color%}%{$fg_bold[white]%}"
@@ -128,17 +104,16 @@ get_space () {
   printf ' %.0s' {1..$SPACES}
 }
 
-# Function to randomize user symbol
-randomize_user_symbol() {
-  local index=$(((RANDOM % ${#symbols[@]}) + 1))
-  user_symbol="%{$fg[yellow]%}${symbols[index]} %B%b"
-}
-# randomize_user_symbol() {
-#   local user_symbol_array_length=${#user_symbol_array[@]}
-#   local random_index=$(( $RANDOM % ${#user_symbol_array_length[@]} ))
-#   user_symbol="%{$fg[yellow]%}${user_symbol_array[random_index]} %B%b"
-# }
+# Function to generate a user symbol
+generate_emoticon() {
+  local eyes=("^" "o" "O" "u" "•" "°" "ಠ" "⊙" "╹" "๑" "♥" "´" "ᵔ")
+  local mouths=("v" "_" "o" "ᴗ" "‿" "ω" "w" "▽")
 
+  local eye="${eyes[RANDOM % ${#eyes[@]} + 1]}"
+  local mouth="${mouths[RANDOM % ${#mouths[@]} + 1]}"
+
+  user_symbol="%{$fg[yellow]%}(>${eye}${mouth}${eye})> %B%b"
+}
 
 _FOURSIGHT_LEFT="${user_host}${current_dir}"
 _FOURSIGHT_RIGHT="[ %* ]"
@@ -153,7 +128,8 @@ setopt prompt_subst
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd foursight_precmd
-add-zsh-hook precmd randomize_user_symbol
+# add-zsh-hook precmd randomize_user_symbol
+add-zsh-hook precmd generate_emoticon
 
 PROMPT='$user_symbol'
 RPROMPT='$(get_git)'
