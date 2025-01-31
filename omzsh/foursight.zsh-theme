@@ -1,8 +1,32 @@
 # oh-my-zsh foursight theme
 # Adapted from clean and bureau themes
-
+local symbols=(
+"(>^_^)>"
+"(>°ᴗ°)>"
+"(>ᵔᴥᵔ)>"
+'(>´◡`)>'
+"(>^o^)>"
+"(>•ᴗ•)>"
+"(>≧▽≦)>"
+"(>✪‿✪)>"
+"(>╹◡╹)>"
+"(>◕‿◕)>"
+"(>∩_∩)>"
+"(>^‿^)>"
+"(>^3^)>"
+"(>♥‿♥)>"
+"(>^ω^)>"
+"(>ಠᴗಠ)>"
+# "(>✿◕‿◕)>"
+# "(>°ヮ°)>"
+# "(>＾▽＾)>"
+# "(>๑❛ᴗ❛๑)>"
+# "(>＾ω＾)>"
+# "(>￣▽￣)>"
+)
 local user_host="%B%(!.%{$fg[green]%}.%{$fg[green]%})%n@%m%{$reset_color%} "
-local user_symbol="%{$fg[yellow]%}>> %B%b"
+# local user_symbol="%{$fg[yellow]%}(>^v^)> %B%b"
+local user_symbol
 local current_dir="%B%{$fg[blue]%}%~ %{$reset_color%}"
 
 # ZSH_THEME_GIT_PROMPT_PREFIX="[%{$fg_bold[green]%} ±%{$reset_color%}%{$fg_bold[white]%}"
@@ -21,13 +45,13 @@ ZSH_THEME_GIT_PROMPT_STASHED="(%{$fg_bold[blue]%}*%{$reset_color%})"
 git_info () {
   local ref
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
-  echo "${ref#refs/heads/}"
-}
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
+      echo "${ref#refs/heads/}"
+    }
 
-git_status() {
-  local result gitstatus
-  gitstatus="$(command git status --porcelain -b 2>/dev/null)"
+    git_status() {
+      local result gitstatus
+      gitstatus="$(command git status --porcelain -b 2>/dev/null)"
 
   # check status of files
   local gitfiles="$(tail -n +2 <<< "$gitstatus")"
@@ -71,8 +95,8 @@ git_status() {
 get_git () {
   # ignore non git folders and hidden repos (adapted from lib/git.zsh)
   if ! command git rev-parse --git-dir &> /dev/null \
-     || [[ "$(command git config --get oh-my-zsh.hide-info 2>/dev/null)" == 1 ]]; then
-    return
+    || [[ "$(command git config --get oh-my-zsh.hide-info 2>/dev/null)" == 1 ]]; then
+      return
   fi
 
   # check git information
@@ -104,20 +128,32 @@ get_space () {
   printf ' %.0s' {1..$SPACES}
 }
 
+# Function to randomize user symbol
+randomize_user_symbol() {
+  local index=$(((RANDOM % ${#symbols[@]}) + 1))
+  user_symbol="%{$fg[yellow]%}${symbols[index]} %B%b"
+}
+# randomize_user_symbol() {
+#   local user_symbol_array_length=${#user_symbol_array[@]}
+#   local random_index=$(( $RANDOM % ${#user_symbol_array_length[@]} ))
+#   user_symbol="%{$fg[yellow]%}${user_symbol_array[random_index]} %B%b"
+# }
+
 
 _FOURSIGHT_LEFT="${user_host}${current_dir}"
 _FOURSIGHT_RIGHT="[ %* ]"
 
 # Function to hook precmd
 foursight_precmd () {
-    _NUMSPACES=`get_space $_FOURSIGHT_LEFT $_FOURSIGHT_RIGHT`
-    print -rP "$_FOURSIGHT_LEFT$_NUMSPACES$_FOURSIGHT_RIGHT"
+  _NUMSPACES=`get_space $_FOURSIGHT_LEFT $_FOURSIGHT_RIGHT`
+  print -rP "$_FOURSIGHT_LEFT$_NUMSPACES$_FOURSIGHT_RIGHT"
 }
 
 setopt prompt_subst
 
-PROMPT='$user_symbol'
-RPROMPT='$(get_git)'
-
 autoload -U add-zsh-hook
 add-zsh-hook precmd foursight_precmd
+add-zsh-hook precmd randomize_user_symbol
+
+PROMPT='$user_symbol'
+RPROMPT='$(get_git)'
