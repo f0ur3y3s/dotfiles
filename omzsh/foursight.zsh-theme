@@ -106,7 +106,7 @@ get_space () {
 
 # Function to generate a user symbol
 generate_emoticon() {
-  local eyes=("^" "o" "O" "u" "•" "°" "ಠ" "⊙" "╹" "๑" "♥" "´" "ᵔ")
+  local eyes=("-" "^" "o" "O" "u" "•" "°" "ಠ" "⊙" "╹" "๑" "♥" "´" "ᵔ")
   local mouths=("v" "_" "o" "ᴗ" "‿" "ω" "w" "▽")
 
   local eye="${eyes[RANDOM % ${#eyes[@]} + 1]}"
