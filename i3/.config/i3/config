@@ -198,8 +198,14 @@ exec_always --no-startup-id killall polybar
 exec_always --no-startup-id polybar &
 
 gaps inner 10
-gaps outer 5
+gaps outer 0
 
-exec --no-startup-id xsetroot -solid black
+#exec --no-startup-id xsetroot -solid black
+exec_always --no-startup-id feh --bg-scale /home/f0ur3y3s/Pictures/green_background.jpg
+
+exec_always --no-startup-id killall picom
+exec_always --no-startup-id picom --experimental-backends
 
 bindsym $mod+Shift+z exec --no-startup-id i3lock
+
+client.focused #7ee075 #7ee075 #000000 #7ee075
